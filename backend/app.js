@@ -20,6 +20,17 @@ app.get('/post',function(req,res){
     res.json(post)
 })
 
+app.get('/post/:postId',function(req,res){
+    const postId = req.params.postId;
+    
+    const posts = post.find(post => post.id === parseInt(postId));
+    if (posts) {
+        res.json(posts);
+    } else {
+        res.status(404).json({ message: 'Post not found' });
+    }
+})
+
 
 app.get('/commants',function(req,res){
     res.json(commants)
